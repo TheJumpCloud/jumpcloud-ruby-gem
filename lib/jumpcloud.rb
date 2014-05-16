@@ -44,7 +44,7 @@ class JumpCloud
     date = get_date
     system_key = get_key_from_config
     signature = create_signature(date, system_key)
-    uri = URI("https://staging-console.jumpcloud.com/api/systems/#{system_key}")
+    uri = URI("https://console.jumpcloud.com/api/systems/#{system_key}")
     request = Net::HTTP::Put.new(uri)
     request.set_content_type("application/json")
     request.add_field("Authorization", "Signature keyId=\"system/#{system_key}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"#{signature}\"")
