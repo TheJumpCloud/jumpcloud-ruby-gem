@@ -38,36 +38,36 @@ class JumpCloud
     date = get_date
     system_key = get_key_from_config
     signature = create_signature("GET", date, system_key)
-    uri = URI("https://console.jumpcloud.com/api/systems/#{system_key}")
-    request = Net::HTTP::Get.new(uri)
-    #request.set_content_type("application/json")
-    request.add_field("Authorization", "Signature keyId=\"system/#{system_key}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"#{signature}\"")
-    request.add_field("Date", "#{date}")
-    request.add_field("accept", "application/json")
-    Net::HTTP.start(uri.host, uri.port, :use_ssl => true) do |http|
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      http.ssl_version = :SSLv3
-      response = http.request(request)
-      return JSON.parse(response.body)
-    end
+    uri = URI.parse("https://staging-console.jumpcloud.com/api/systems/#{system_key}")
+    request = Net::HTTP.new(uri.host, uri.port)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    request["Authorization"] = "Signature keyId=\"system/#{system_key}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"#{signature}\""
+    request["Date"] = "#{date}"
+    request["accept"] = "application/json"
+
+    response = http.request(request)
+    return JSON.parse(response.body)
   end
 
   def self.send_to_server(data)
     date = get_date
     system_key = get_key_from_config
     signature = create_signature("PUT", date, system_key)
-    uri = URI("https://console.jumpcloud.com/api/systems/#{system_key}")
-    request = Net::HTTP::Put.new(uri)
-    request.set_content_type("application/json")
-    request.add_field("Authorization", "Signature keyId=\"system/#{system_key}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"#{signature}\"")
-    request.add_field("Date", "#{date}")
-    request.add_field("accept", "application/json")
+    uri = URI.parse("https://staging-console.jumpcloud.com/api/systems/#{system_key}")
+    request = Net::HTTP::Put.new(uri.request_uri)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.ssl_version = :SSLv3
+    request["Authorization"] = "Signature keyId=\"system/#{system_key}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"#{signature}\""
+    request["Date"] = "#{date}"
+    request["accept"] = "application/json"
+    request["Content-Type"] = "application/json"
     request.body = JSON.generate(data)
-    Net::HTTP.start(uri.host, uri.port, :use_ssl => true) do |http|
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      http.ssl_version = :SSLv3
-      http.request(request)
-    end
+    response = http.request(request)
   end
 
 end  
