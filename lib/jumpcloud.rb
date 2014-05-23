@@ -38,7 +38,7 @@ class JumpCloud
     date = get_date
     system_key = get_key_from_config
     signature = create_signature("GET", date, system_key)
-    uri = URI.parse("https://staging-console.jumpcloud.com/api/systems/#{system_key}")
+    uri = URI.parse("https://console.jumpcloud.com/api/systems/#{system_key}")
     request = Net::HTTP.new(uri.host, uri.port)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
@@ -56,7 +56,7 @@ class JumpCloud
     date = get_date
     system_key = get_key_from_config
     signature = create_signature("PUT", date, system_key)
-    uri = URI.parse("https://staging-console.jumpcloud.com/api/systems/#{system_key}")
+    uri = URI.parse("https://console.jumpcloud.com/api/systems/#{system_key}")
     request = Net::HTTP::Put.new(uri.request_uri)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
