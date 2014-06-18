@@ -56,5 +56,5 @@ JumpCloud.set_system_tags("52cda39217b0917a63000020", "52966eac53e890d008000f05"
 ```
 require 'jumpcloud'
 
-Jumpcloud.delete_system()
+JumpCloud.delete_system()
 ```
