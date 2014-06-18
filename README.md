@@ -53,6 +53,9 @@ JumpCloud.set_system_tags("52cda39217b0917a63000020", "52966eac53e890d008000f05"
 
 ### Deleting the system
 
+This will delete the system from JumpCloud, and should be used prior to terminating an instance managed by JumpCloud:
+
+
 ```
 require 'jumpcloud'
 
