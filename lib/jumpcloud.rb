@@ -42,8 +42,7 @@ class JumpCloud
     request = Net::HTTP::Delete.new(uri.request_uri)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    http.ssl_version = :SSLv3
+    http.ssl_version = :TLSv1_2
     request["Authorization"] = "Signature keyId=\"system/#{system_key}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"#{signature}\""
     request["Date"] = "#{date}"
     request["accept"] = "application/json"
@@ -59,7 +58,7 @@ class JumpCloud
     request = Net::HTTP.new(uri.host, uri.port)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-
+    http.ssl_version = :TLSv1_2
     request = Net::HTTP::Get.new(uri.request_uri)
     request["Authorization"] = "Signature keyId=\"system/#{system_key}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"#{signature}\""
     request["Date"] = "#{date}"
@@ -77,8 +76,7 @@ class JumpCloud
     request = Net::HTTP::Put.new(uri.request_uri)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    http.ssl_version = :SSLv3
+    http.ssl_version = :TLSv1_2
     request["Authorization"] = "Signature keyId=\"system/#{system_key}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"#{signature}\""
     request["Date"] = "#{date}"
     request["accept"] = "application/json"
