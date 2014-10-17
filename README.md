@@ -12,7 +12,7 @@ gem build jumpcloud.gemspec
 And then install it locally in your own gem repo:
 
 ```
-gem install jumpcloud-0.2.1.gem
+gem install jumpcloud-0.3.0.gem
 ```
 
 Or, you can install it from the rubygems.org repo, by simply running:
