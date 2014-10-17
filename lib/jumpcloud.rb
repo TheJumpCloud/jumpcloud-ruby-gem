@@ -34,6 +34,12 @@ class JumpCloud
     send_to_server(system_data)
   end
 
+  def self.set_sshPassEnabled()
+    system_data = get_system_data()
+    system_data["allowSshPasswordAuthentication"] = true
+    send_to_server(system_data)
+  end
+
   def self.delete_system()
     date = get_date
     system_key = get_key_from_config
