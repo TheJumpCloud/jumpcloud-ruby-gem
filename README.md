@@ -3,6 +3,10 @@ jumpcloud-ruby-gem
 
 The JumpCloud Ruby Gem is JumpCloud's first SDK, based on Ruby, and leveraging the JumpCloud system API. It allows you easily set up any server by adding it to any list of tags you like, settings the system name, and to help you terminate the server by being able to delete it from JumpCloud.
 
+The JumpCloud Ruby Gem is made available under the Mozilla Public License v2.0 (https://www.mozilla.org/MPL/2.0/), and this is
+a curated public project. We will be accepting pull requests going forward, provided they're well-tested and fit with the goal
+of providing the easiest possible access to the JumpCloud system context API.
+
 You can build the Gem yourself based on this repo, by doing:
 
 ```
@@ -12,7 +16,7 @@ gem build jumpcloud.gemspec
 And then install it locally in your own gem repo:
 
 ```
-gem install jumpcloud-0.2.1.gem
+gem install jumpcloud-0.3.0.gem
 ```
 
 Or, you can install it from the rubygems.org repo, by simply running:
