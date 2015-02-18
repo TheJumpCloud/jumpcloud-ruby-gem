@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'jumpcloud'
-  s.version     = '0.2.1'
+  s.version     = '0.3.0'
   s.licenses    = ['Mozilla Public License v2.0 (https://www.mozilla.org/MPL/2.0/)']
   s.summary     = "Basic JumpCloud system configuration via api"
   s.authors     = ["Topher Marie"]
