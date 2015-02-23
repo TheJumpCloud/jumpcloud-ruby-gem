@@ -65,3 +65,21 @@ require 'jumpcloud'
 
 JumpCloud.delete_system()
 ```
+
+### Setting multiple fields at one time
+
+You can set multiple fields at a time, as well, and fields in excess of what can be set via other functions in the SDK. JumpCloud thanks Ryan Bachman (ryan.bachman@inin.com) at Interactive Intelligence for his submission.
+
+```
+jc = JumpCloud.new()
+
+jc.update_settings({
+"displayName" => "Foo-Server",
+"allowSshPasswordAuthentication" => true,
+"allowPublicKeyAuthentication" => true,
+"allowSshRootLogin" => false,
+"tags" => ['dev']
+})
+```
+
+Please see the JumpCloud System Context API documentation (https://github.com/TheJumpCloud/SystemContextAPI) on the Systems and Tags APIs for more detail.
