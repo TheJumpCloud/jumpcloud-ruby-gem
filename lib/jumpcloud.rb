@@ -4,6 +4,22 @@ require 'openssl'
 require 'net/http'
 
 class JumpCloud
+  
+  attr_accessor :settings
+  
+  def initialize(args=self.class.get_system_data())
+    @settings = args
+  end
+  
+  def update_settings(options)
+    data = {}
+    data.merge!(@settings) 
+    options.each do |k,v|
+      data[k] = v if @settings.has_key?(k) 
+    end
+    JumpCloud.send_to_server(data)
+  end
+  
   def self.get_date
     Time.now.utc.strftime("+%a, %d %h %Y %H:%M:%S GMT")
   end
