@@ -42,7 +42,8 @@ class JumpCloud
 
   def self.client_key
     file = '/opt/jc/client.key'
-    File.exists?(file) ? File.open(file) : fail(file_not_found_text(file))
+    fail file_not_found_text(file) unless File.exists?(file)
+    File.open(file)
   end
 
   def self.file_not_found_text(path)
@@ -82,7 +83,7 @@ class JumpCloud
     http.request(request)
   end
 
-  def self.get_system_data()
+  def self.get_system_data
     date = get_date
     system_key = get_key_from_config
     signature = create_signature("GET", date, system_key)
