@@ -87,7 +87,6 @@ class JumpCloud
     system_key = get_key_from_config
     signature = create_signature("GET", date, system_key)
     uri = URI.parse("https://console.jumpcloud.com/api/systems/#{system_key}")
-    request = Net::HTTP.new(uri.host, uri.port)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     request = Net::HTTP::Get.new(uri.request_uri)
