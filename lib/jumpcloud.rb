@@ -34,7 +34,8 @@ class JumpCloud
 
   def self.get_key_from_config
     key = parse_config["systemKey"]
-    key.nil? ? fail('systemKey not found in configuration!') : key
+    fail('systemKey not found in configuration!') if key.nil?
+    key
   end
 
   def self.create_signature(verb, date, system_key)
