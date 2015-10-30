@@ -7,7 +7,7 @@ class JumpCloud
   
   attr_accessor :settings
   
-  def initialize(args=self.class.get_system_data())
+  def initialize(args=self.class.get_system_data)
     @settings = args
   end
   
@@ -50,24 +50,24 @@ class JumpCloud
   end
 
   def self.set_system_tags(*tags)
-    system_data = get_system_data()
+    system_data = get_system_data
     system_data["tags"] = tags
     send_to_server(system_data)
   end
 
   def self.set_system_name(system_name)
-    system_data = get_system_data()
+    system_data = get_system_data
     system_data["displayName"] = system_name
     send_to_server(system_data)
   end
 
-  def self.set_sshPassEnabled()
-    system_data = get_system_data()
+  def self.set_sshPassEnabled
+    system_data = get_system_data
     system_data["allowSshPasswordAuthentication"] = true
     send_to_server(system_data)
   end
 
-  def self.delete_system()
+  def self.delete_system
     date = get_date
     system_key = get_key_from_config
     signature = create_signature("DELETE", date, system_key)
