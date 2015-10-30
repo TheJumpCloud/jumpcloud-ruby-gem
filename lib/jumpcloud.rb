@@ -25,7 +25,9 @@ class JumpCloud
   end
 
   def self.parse_config
-    JSON.parse( IO.read("/opt/jc/jcagent.conf") )
+    file = '/opt/jc/jcagent.conf'
+    fail file_not_found_text(file) unless File.exists?(file)
+    JSON.parse(IO.read(file))
   end
 
   def self.get_key_from_config
@@ -34,8 +36,17 @@ class JumpCloud
 
   def self.create_signature(verb, date, system_key)
     signed_string = "#{verb} /api/systems/#{system_key} HTTP/1.1\ndate: #{date}"
-    key = OpenSSL::PKey::RSA.new(File.open("/opt/jc/client.key"))
+    key = OpenSSL::PKey::RSA.new(client_key)
     Base64.strict_encode64(key.sign(OpenSSL::Digest::SHA256.new, signed_string))
+  end
+
+  def self.client_key
+    file = '/opt/jc/client.key'
+    File.exists?(file) ? File.open(file) : fail(file_not_found_text(file))
+  end
+
+  def self.file_not_found_text(path)
+    "#{path} not found, is the JumpCloud agent installed?"
   end
 
   def self.set_system_tags(*tags)
