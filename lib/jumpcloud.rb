@@ -79,7 +79,7 @@ class JumpCloud
     request["Date"] = "#{date}"
     request["accept"] = "application/json"
     request["Content-Type"] = "application/json"
-    response = http.request(request)
+    http.request(request)
   end
 
   def self.get_system_data()
@@ -95,7 +95,7 @@ class JumpCloud
     request["accept"] = "application/json"
 
     response = http.request(request)
-    return JSON.parse(response.body)
+    JSON.parse(response.body)
   end
 
   def self.send_to_server(data)
@@ -111,7 +111,7 @@ class JumpCloud
     request["accept"] = "application/json"
     request["Content-Type"] = "application/json"
     request.body = JSON.generate(data)
-    response = http.request(request)
+    http.request(request)
   end
 
 end  
