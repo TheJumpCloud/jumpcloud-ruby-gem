@@ -28,10 +28,13 @@ class JumpCloud
     file = '/opt/jc/jcagent.conf'
     fail file_not_found_text(file) unless File.exists?(file)
     JSON.parse(IO.read(file))
+  rescue JSON::ParserError
+    raise "Problem parsing #{file} as JSON; it is valid JSON?"
   end
 
   def self.get_key_from_config
-    parse_config["systemKey"]
+    key = parse_config["systemKey"]
+    key.nil? ? fail('systemKey not found in configuration!') : key
   end
 
   def self.create_signature(verb, date, system_key)
@@ -94,7 +97,6 @@ class JumpCloud
     request["Authorization"] = "Signature keyId=\"system/#{system_key}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"#{signature}\""
     request["Date"] = "#{date}"
     request["accept"] = "application/json"
-
     response = http.request(request)
     JSON.parse(response.body)
   end
