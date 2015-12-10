@@ -6,6 +6,10 @@ require 'net/http'
 class JumpCloud
   
   attr_accessor :settings
+
+  def initialize( dir="/opt/jc/" )
+    @jc_directory = dir
+  end
   
   def initialize(args=self.class.get_system_data())
     @settings = args
@@ -25,7 +29,7 @@ class JumpCloud
   end
 
   def self.parse_config
-    JSON.parse( IO.read("/opt/jc/jcagent.conf") )
+    JSON.parse( IO.read(File.Join(@jc_directory, "jcagent.conf") )
   end
 
   def self.get_key_from_config
@@ -34,7 +38,7 @@ class JumpCloud
 
   def self.create_signature(verb, date, system_key)
     signed_string = "#{verb} /api/systems/#{system_key} HTTP/1.1\ndate: #{date}"
-    key = OpenSSL::PKey::RSA.new(File.open("/opt/jc/client.key"))
+    key = OpenSSL::PKey::RSA.new(File.open(File.Join(@jc_directory,"client.key")))
     Base64.strict_encode64(key.sign(OpenSSL::Digest::SHA256.new, signed_string))
   end
 
