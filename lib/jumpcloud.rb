@@ -7,6 +7,8 @@ class JumpCloud
   
   attr_accessor :settings
 
+  @jc_directory = "/opt/jc/"
+
   def initialize( dir="/opt/jc/" )
     @jc_directory = dir
   end
