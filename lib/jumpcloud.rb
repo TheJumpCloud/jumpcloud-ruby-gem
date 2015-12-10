@@ -31,7 +31,7 @@ class JumpCloud
   end
 
   def self.parse_config
-    JSON.parse( IO.read(File.Join(@jc_directory, "jcagent.conf") )
+    JSON.parse( IO.read(File.Join(@jc_directory, "jcagent.conf") ))
   end
 
   def self.get_key_from_config
