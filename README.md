@@ -1,6 +1,12 @@
 jumpcloud-ruby-gem
 ==================
 
+This repository is now deprecated. Please refer to the [jcapi-ruby]('https://github.com/TheJumpCloud/jcapi-ruby') repository for the Ruby JumpCloud API Client.
+
+
+
+
+
 The JumpCloud Ruby Gem is JumpCloud's first SDK, based on Ruby, and leveraging the JumpCloud system API. It allows you easily set up any server by adding it to any list of tags you like, settings the system name, and to help you terminate the server by being able to delete it from JumpCloud.
 
 The JumpCloud Ruby Gem is made available under the Mozilla Public License v2.0 (https://www.mozilla.org/MPL/2.0/), and this is
