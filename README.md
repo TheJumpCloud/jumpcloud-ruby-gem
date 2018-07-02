@@ -1,7 +1,7 @@
 jumpcloud-ruby-gem
 ==================
 
-This repository is now deprecated. Please refer to the [jcapi-ruby](https://github.com/TheJumpCloud/jcapi-ruby) repository for the Ruby JumpCloud API Client.
+This repository is now deprecated and this Gem code base is no longer supported. Please refer to the [jcapi-ruby](https://github.com/TheJumpCloud/jcapi-ruby) repository for the Ruby JumpCloud API Client.
 
 ---
 
